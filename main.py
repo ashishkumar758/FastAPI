@@ -5,12 +5,15 @@ app=FastAPI()
 def home():
     return {"message":"This is home route."}
 
-# About route
-@app.get("/about")
-def about():
-    return {"message":"This is about route."}
+#Dynamic routing
+#users task
+from fastapi import FastAPI
+@app.get("/tasks/{task_id}")
+def get_task_id(task_id):
+    return {"task id":task_id}
 
-#users route
-@app.get("/users")
-def users():
-    return {"message":["Mohit","Rohit","Amit"]}
+#Dynamic routing based on datatypes
+@app.get("/users/{user_id}")
+def get_user_id(user_id:int):
+    return {"User id":user_id}
+
