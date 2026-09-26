@@ -1,19 +1,29 @@
 from fastapi import FastAPI
 app=FastAPI()
-# Home route
-@app.get("/")
-def home():
-    return {"message":"This is home route."}
 
-#Dynamic routing
-#users task
-from fastapi import FastAPI
-@app.get("/tasks/{task_id}")
-def get_task_id(task_id):
-    return {"task id":task_id}
+# Querry parameter user?name="ashish"
 
-#Dynamic routing based on datatypes
-@app.get("/users/{user_id}")
-def get_user_id(user_id:int):
-    return {"User id":user_id}
+@app.get("/users")
+def get_users(name):
+    return {"Name":name}
 
+# Querry parameter if it is not that given then it will return None
+
+@app.get("/task")
+def get_task(name:str = None):
+    return {"Name":name}
+
+# Default parameter
+
+@app.get("/product")
+def get_product(name : int = 10):
+    return {"name" : name}
+
+# Default items
+
+@app.get("/items")
+def get_items(name:str = None, count : int = 10):
+    return {
+        "name":name,
+        "count":count
+    }
