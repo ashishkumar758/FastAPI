@@ -1,29 +1,13 @@
 from fastapi import FastAPI
-app=FastAPI()
-
-# Querry parameter user?name="ashish"
-
-@app.get("/users")
-def get_users(name):
-    return {"Name":name}
-
-# Querry parameter if it is not that given then it will return None
-
-@app.get("/task")
-def get_task(name:str = None):
-    return {"Name":name}
-
-# Default parameter
-
-@app.get("/product")
-def get_product(name : int = 10):
-    return {"name" : name}
-
-# Default items
-
-@app.get("/items")
-def get_items(name:str = None, count : int = 10):
-    return {
-        "name":name,
-        "count":count
+# we use pyndatic to add validation in dictionary or it is defined as schema desgin for the user so that he get to know about how many field he has to fill or of which data type.
+from pydantic import BaseModel
+app = FastAPI()
+class Users(BaseModel):
+    name:str
+    age:int
+@app.post("/create-user")
+def create_user(user:Users):
+    return{
+        "message":"User data",
+        "Data":user
     }
