@@ -28,7 +28,7 @@ class ResponseUser(BaseModel):
     name:str
     age:int
 
-@app.get("/user", response_model=User)
+@app.get("/user", response_model=ResponseUser)
 def get_user():
     return{
         "name":"Ashish",
